@@ -1,0 +1,107 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🔄 Sync CubeMX (标准模式)",
+            "type": "shell",
+            "command": ".\\sync_cubemx.ps1",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "🔄 Sync CubeMX (强制模式)",
+            "type": "shell",
+            "command": ".\\sync_cubemx.ps1 -Force",
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "💾 仅备份文件",
+            "type": "shell",
+            "command": ".\\sync_cubemx.ps1 -BackupOnly",
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "⬆️ 同步回 CubeMX",
+            "type": "shell",
+            "command": ".\\sync_cubemx.ps1 -SyncBack",
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "🧹 清理旧备份",
+            "type": "shell",
+            "command": ".\\sync_cubemx.ps1 -CleanBackup",
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "🔨 PlatformIO Build",
+            "type": "shell",
+            "command": "pio run",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "🚀 PlatformIO Upload",
+            "type": "shell",
+            "command": "pio run --target upload",
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "📡 PlatformIO Monitor",
+            "type": "shell",
+            "command": "pio device monitor",
+            "group": "test",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        }
+    ]
+}
