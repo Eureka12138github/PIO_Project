@@ -119,6 +119,7 @@ int main(void)
   OLED_Clear();
   OLED_ShowString(0, 0, "Counter:", OLED_8X16);
   OLED_ShowString(0, 18, "00000", OLED_8X16);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */

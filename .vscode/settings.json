@@ -13,5 +13,19 @@
     "MD024": false,
     "MD041": false,
     "MD060": false
+  },
+  // 禁用 PlatformIO 自动生成 c_cpp_properties.json（避免路径拼接 Bug）
+  "platformio.build.useAutomaticRebuild": false,
+  "C_Cpp.autocomplete": "Default",
+  "C_Cpp.enhancedColorization": true,
+  // 完全禁用 PlatformIO 的 C/C++ 配置生成
+  "platformio.build.generateCompileCommands": false,
+  // 保存时自动修复 c_cpp_properties.json 路径问题
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "never"
+  },
+  "files.watcherExclude": {
+    "**/.pio/**": true,
+    "**/.vscode/c_cpp_properties.json": false
   }
 }

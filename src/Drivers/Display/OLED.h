@@ -8,15 +8,14 @@
 
 /*FontSize参数取值*/
 /*此参数值不仅用于判断，而且用于计算横向字符偏移，默认值为字体像素宽度*/
-#define OLED_8X16				8
-#define OLED_6X8				6
+#define OLED_8X16 8
+#define OLED_6X8 6
 
 /*IsFilled参数数值*/
-#define OLED_UNFILLED			0
-#define OLED_FILLED				1
+#define OLED_UNFILLED 0
+#define OLED_FILLED 1
 
 /*********************参数宏定义*/
-
 
 /*函数声明*********************/
 
@@ -58,7 +57,6 @@ void OLED_DrawArc(int16_t X, int16_t Y, uint8_t Radius, int16_t StartAngle, int1
 /*********************函数声明*/
 
 #endif
-
 
 /*****************江协科技|版权所有****************/
 /*****************jiangxiekeji.com*****************/

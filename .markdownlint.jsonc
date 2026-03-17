@@ -1,8 +1,10 @@
 {
   "default": true,
-  "MD013": false,
-  "MD024": false,
-  "MD041": false,
-  "MD060": false,
-  "MD009": false
+  "MD013": false, // 允许长行（中文排版需要）
+  "MD024": false, // 允许重复标题
+  "MD041": false, // 首行不强制 H1
+  "MD060": false, // 简化链接语法
+  "MD040": true, // ✅ 代码块必须指定语言（语法高亮）
+  "MD036": false, // 允许强调作标题
+  "MD009": false // 不检查行尾空格
 }
