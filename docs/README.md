@@ -94,6 +94,32 @@
 
 ---
 
+### 💻 显示设备驱动文档
+
+#### 8. [OLED_DISPLAY_GUIDE.md](OLED_DISPLAY_GUIDE.md) - OLED 显示屏完整指南 ⭐⭐⭐⭐⭐
+
+**位置：** docs/OLED_DISPLAY_GUIDE.md  
+**用途：** SSD1306/SH1106 OLED 驱动开发完整教程  
+**包含：**
+
+- 快速开始（3 步上手）
+- 硬件连接图（I2C/SPI）
+- anurag3301/STM32-SSD1306 库使用
+- 完整代码示例（基础 + 高级）
+- API 速查表
+- 故障排除指南
+- 自行开发驱动框架
+
+**推荐：** OLED 用户必读
+
+#### 9. [QUICK_REFERENCE_OLED.md](QUICK_REFERENCE_OLED.md) - OLED 驱动速查卡 ⭐⭐⭐⭐
+
+**位置：** docs/QUICK_REFERENCE_OLED.md  
+**用途：** OLED 驱动快速参考  
+**特点：** 简洁明了，一目了然
+
+---
+
 ### 📂 历史文档（已合并）
 
 以下文档已合并到 `docs/CUBEMX_GUIDE.md`，**不再推荐使用**：
