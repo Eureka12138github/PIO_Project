@@ -3,13 +3,67 @@
 
 param(
     [string]$CubeMXPath = "D:\Embedded-related\PlatformIO\CUBEMX FOR PIO\PROJECT_FOR_PIO",
-    [string]$PIOPath = "D:\Embedded-related\PlatformIO\PIO_TEST2"
+    [string]$PIOPath = ""  # Empty means auto-detect
 )
 
-Write-Host "======================================================================"
-Write-Host "CubeMX to PlatformIO Auto-Sync Tool"
-Write-Host "======================================================================"
+# ============================================================================
+# Auto-detect PIO project path
+# ============================================================================
+
+function Get-PIOProjectPath {
+    # Method 1: Get script directory
+    $scriptDir = $null
+    if ($MyInvocation.MyCommand -and $MyInvocation.MyCommand.Path) {
+        $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+    }
+    
+    if ($scriptDir -and (Test-Path $scriptDir)) {
+        $hasSrc = Test-Path (Join-Path $scriptDir "src")
+        $hasPlatformioIni = Test-Path (Join-Path $scriptDir "platformio.ini")
+        
+        if ($hasSrc -and $hasPlatformioIni) {
+            Write-Host "[AUTO-DETECT] Using script directory: $scriptDir" -ForegroundColor Green
+            return $scriptDir
+        }
+    }
+    
+    # Method 2: Try VSCode workspace
+    if ($env:VSCODE_WORKSPACE_FOLDER -and (Test-Path $env:VSCODE_WORKSPACE_FOLDER)) {
+        Write-Host "[AUTO-DETECT] Using VSCode workspace: $($env:VSCODE_WORKSPACE_FOLDER)" -ForegroundColor Green
+        return $env:VSCODE_WORKSPACE_FOLDER
+    }
+    
+    # Method 3: Current location
+    $currentPath = (Get-Location).Path
+    $hasSrc = Test-Path (Join-Path $currentPath "src")
+    $hasPlatformioIni = Test-Path (Join-Path $currentPath "platformio.ini")
+    
+    if ($hasSrc -and $hasPlatformioIni) {
+        Write-Host "[AUTO-DETECT] Using current directory: $currentPath" -ForegroundColor Green
+        return $currentPath
+    }
+    
+    # Method 4: Fallback
+    $defaultPath = "D:\Embedded-related\PlatformIO\PIO_TEST2"
+    Write-Host "[FALLBACK] Using default path: $defaultPath" -ForegroundColor Yellow
+    return $defaultPath
+}
+
+# ============================================================================
+# Main script
+# ============================================================================
+
+Write-Host "======================================================================" -ForegroundColor Cyan
+Write-Host "CubeMX to PlatformIO Auto-Sync Tool" -ForegroundColor Cyan
+Write-Host "======================================================================" -ForegroundColor Cyan
 Write-Host ""
+
+# Auto-detect PIO path if not provided
+$PIOPath = if ([string]::IsNullOrEmpty($PIOPath)) {
+    Get-PIOProjectPath
+} else {
+    $PIOPath
+}
 
 # Validate paths
 if (-not (Test-Path $CubeMXPath)) {

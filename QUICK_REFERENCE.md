@@ -24,7 +24,7 @@ pio run
 ### ✅ 需要复制（脚本自动完成）
 
 | 源目录 | 目标目录 | 文件 |
-|--------|---------|------|
+| ------ | -------- | ---- |
 | `Core/Inc/` | `include/` | `stm32f1xx_hal_conf.h`, `stm32f1xx_it.h`, `main.h` |
 | `Core/Src/` | `src/` | `stm32f1xx_hal_msp.c`, `stm32f1xx_it.c`, `system_stm32f1xx.c`, `main.c` |
 
@@ -40,7 +40,7 @@ pio run
 ## 🔧 脚本命令速查
 
 | 命令 | 功能 | 说明 |
-|------|------|------|
+| ---- | ---- | ---- |
 | `sync.bat` | 快速同步 | 双击运行 |
 | `.\sync_cubemx_simple.ps1` | PowerShell 版 | 命令行运行 |
 | `pio run` | 编译验证 | 必须执行 |
@@ -52,10 +52,12 @@ pio run
 ### main.c 处理
 
 **脚本会：**
+
 - ✅ 自动备份现有文件
 - ⚠️ 复制新版本（**需要手动合并业务逻辑**）
 
 **你应该：**
+
 1. 检查 `src/backup/main.c.*.bak`
 2. 复制你的业务逻辑到新生成的文件
 3. 在 `USER CODE BEGIN/END` 块内编写代码
@@ -72,11 +74,12 @@ pio run
 
 ### 推荐流程 ⭐⭐⭐⭐⭐
 
-```
+```text
 CubeMX 配置 → 生成代码 → sync.bat → pio run → 开发业务逻辑
 ```
 
 **优点：**
+
 - 简单可靠
 - 代码稳定
 - 易于维护
@@ -84,17 +87,20 @@ CubeMX 配置 → 生成代码 → sync.bat → pio run → 开发业务逻辑
 ### 开发模式
 
 **首次配置：**
+
 ```bash
 CubeMX → sync.bat → pio run ✓
 ```
 
 **后续开发：**
-```
+
+```text
 在 PIO 中编写业务逻辑 → 测试 → Git 提交
 ```
 
 **配置变更：**
-```
+
+```text
 CubeMX 修改 → 生成 → sync.bat → 手动合并 main.c → pio run ✓
 ```
 
@@ -114,8 +120,8 @@ git checkout HEAD -- src/main.c
 
 ### 编译失败
 
-```bash
-# 检查 platformio.ini
+```ini
+; 检查 platformio.ini
 build_flags = 
     -Iinclude
     -DUSE_HAL_DRIVER
@@ -135,7 +141,7 @@ build_flags =
 ## 💡 快速决策
 
 | 场景 | 推荐操作 |
-|------|---------|
+| ---- | -------- |
 | 首次使用 | 运行 `sync.bat` |
 | 修改外设 | CubeMX → sync.bat → 手动合并 |
 | 日常开发 | 在 PIO 中直接开发 |
