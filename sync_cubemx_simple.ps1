@@ -44,7 +44,7 @@ function Get-PIOProjectPath {
     }
     
     # Method 4: Fallback
-    $defaultPath = "D:\Embedded-related\PlatformIO\PIO_TEST2"
+    $defaultPath = "D:\Embedded-related\PlatformIO\PIO_HAL_PROJECT_TEMPLATE"
     Write-Host "[FALLBACK] Using default path: $defaultPath" -ForegroundColor Yellow
     return $defaultPath
 }
@@ -249,92 +249,8 @@ if ($choice -eq "1" -or $choice -eq "2") {
     exit 1
 }
 
-# ============================================================================
-# 第四步：自动修复 c_cpp_properties.json 路径问题
-# ============================================================================
-
-Write-Host ""
-Write-Host "正在修复 VSCode 配置..." -ForegroundColor Cyan
-
-$cppPropertiesPath = Join-Path $PIOPath ".vscode\c_cpp_properties.json"
-
-if (Test-Path $cppPropertiesPath) {
-    $content = Get-Content $cppPropertiesPath -Raw
-    $originalContent = $content
-    
-    # 定义需要修复的错误路径模式（同时处理 / 和 \）
-    $fixes = @(
-        @{
-            Pattern = 'D:\\Embedded-related\\PIO\\PIO_HAL_PROJECT_TEMPLATE\\Embedded-relatedPIOPIO_HAL_PROJECT_TEMPLATE\\include'
-            Replacement = '${workspaceFolder}/include'
-        },
-        @{
-            Pattern = 'D:/Embedded-related/PIO/PIO_HAL_PROJECT_TEMPLATE/Embedded-relatedPIOPIO_HAL_PROJECT_TEMPLATE/include'
-            Replacement = '${workspaceFolder}/include'
-        },
-        @{
-            Pattern = 'D:\\Embedded-related\\PIO\\PIO_HAL_PROJECT_TEMPLATE\\Embedded-relatedPIOPIO_HAL_PROJECT_TEMPLATE\\src\\Drivers'
-            Replacement = '${workspaceFolder}/src/Drivers'
-        },
-        @{
-            Pattern = 'D:/Embedded-related/PIO/PIO_HAL_PROJECT_TEMPLATE/Embedded-relatedPIOPIO_HAL_PROJECT_TEMPLATE/src/Drivers'
-            Replacement = '${workspaceFolder}/src/Drivers'
-        },
-        @{
-            Pattern = 'D:\\Embedded-related\\PIO\\PIO_HAL_PROJECT_TEMPLATE\\Embedded-relatedPIOPIO_HAL_PROJECT_TEMPLATE\\src\\Drivers\\Display'
-            Replacement = '${workspaceFolder}/src/Drivers/Display'
-        },
-        @{
-            Pattern = 'D:/Embedded-related/PIO/PIO_HAL_PROJECT_TEMPLATE/Embedded-relatedPIOPIO_HAL_PROJECT_TEMPLATE/src/Drivers/Display'
-            Replacement = '${workspaceFolder}/src/Drivers/Display'
-        },
-        @{
-            Pattern = 'D:\\Embedded-related\\PIO\\PIO_HAL_PROJECT_TEMPLATE\\Embedded-relatedPIOPIO_HAL_PROJECT_TEMPLATE\\src\\Drivers\\Display\\Fonts'
-            Replacement = '${workspaceFolder}/src/Drivers/Display/Fonts'
-        },
-        @{
-            Pattern = 'D:/Embedded-related/PIO/PIO_HAL_PROJECT_TEMPLATE/Embedded-relatedPIOPIO_HAL_PROJECT_TEMPLATE/src/Drivers/Display/Fonts'
-            Replacement = '${workspaceFolder}/src/Drivers/Display/Fonts'
-        },
-        @{
-            Pattern = 'D:\\Embedded-related\\PIO\\PIO_HAL_PROJECT_TEMPLATE\\include'
-            Replacement = '${workspaceFolder}/include'
-        },
-        @{
-            Pattern = 'D:/Embedded-related/PIO/PIO_HAL_PROJECT_TEMPLATE/include'
-            Replacement = '${workspaceFolder}/include'
-        },
-        @{
-            Pattern = 'D:\\Embedded-related\\PIO\\PIO_HAL_PROJECT_TEMPLATE\\src'
-            Replacement = '${workspaceFolder}/src'
-        },
-        @{
-            Pattern = 'D:/Embedded-related/PIO/PIO_HAL_PROJECT_TEMPLATE/src'
-            Replacement = '${workspaceFolder}/src'
-        }
-    )
-    
-    # 应用所有修复
-    foreach ($fix in $fixes) {
-        $content = $content -replace [regex]::Escape($fix.Pattern), $fix.Replacement
-    }
-    
-    # 移除数组中的空字符串
-    $content = $content -replace ',\s*""\s*\]', ']'
-    
-    # 只有当内容发生变化时才保存
-    if ($content -ne $originalContent) {
-        Set-Content $cppPropertiesPath -Value $content -Encoding UTF8
-        Write-Host "✓ 已自动修复 c_cpp_properties.json 路径配置" -ForegroundColor Green
-    } else {
-        Write-Host "✓ c_cpp_properties.json 无需修复" -ForegroundColor Yellow
-    }
-} else {
-    Write-Host "⚠ 未找到 c_cpp_properties.json，跳过修复" -ForegroundColor Yellow
-}
-
 Write-Host ""
 Write-Host "========================================================================" -ForegroundColor Cyan
-Write-Host "🎉 全部完成！" -ForegroundColor Green
+Write-Host "All completed!" -ForegroundColor Green
 Write-Host "========================================================================" -ForegroundColor Cyan
 Write-Host ""
