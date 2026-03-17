@@ -178,10 +178,11 @@ Write-Host "Select operation mode:" -ForegroundColor Cyan
 Write-Host "1. Standard Sync (copy files with backup)"
 Write-Host "2. Force Sync (overwrite all)"
 Write-Host "3. Backup Only"
-Write-Host "4. Exit"
+Write-Host "4. Clean Backup Files (delete all .bak files)"
+Write-Host "5. Exit"
 Write-Host ""
 
-$choice = Read-Host "Enter choice (1-4)"
+$choice = Read-Host "Enter choice (1-5)"
 
 if ($choice -eq "1" -or $choice -eq "2") {
     Write-Host ""
@@ -205,6 +206,42 @@ if ($choice -eq "1" -or $choice -eq "2") {
     Write-Host ""
     Write-Host "Backup completed!" -ForegroundColor Green
 } elseif ($choice -eq "4") {
+    Write-Host ""
+    Write-Host "Cleaning backup files..." -ForegroundColor Cyan
+    
+    $backupDirs = @(
+        (Join-Path $pioSrc "backup"),
+        (Join-Path $pioInc "backup")
+    )
+    
+    $totalDeleted = 0
+    
+    foreach ($backupDir in $backupDirs) {
+        if (Test-Path $backupDir) {
+            $bakFiles = Get-ChildItem -Path $backupDir -Filter "*.bak" -File
+            foreach ($bakFile in $bakFiles) {
+                Remove-Item -Path $bakFile.FullName -Force
+                Write-Host "  [DELETE] $($bakFile.Name)" -ForegroundColor Yellow
+                $totalDeleted++
+            }
+            
+            # Remove empty backup directory
+            if ((Get-ChildItem -Path $backupDir).Count -eq 0) {
+                Remove-Item -Path $backupDir -Force
+                Write-Host "  [DELETE] Empty directory: $backupDir" -ForegroundColor Yellow
+            }
+        }
+    }
+    
+    Write-Host ""
+    if ($totalDeleted -gt 0) {
+        Write-Host "======================================================================"
+        Write-Host "Cleaned $totalDeleted backup file(s)!" -ForegroundColor Green
+        Write-Host "======================================================================"
+    } else {
+        Write-Host "No backup files found." -ForegroundColor Cyan
+    }
+} elseif ($choice -eq "5") {
     Write-Host "Exiting..."
     exit 0
 } else {

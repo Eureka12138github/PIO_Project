@@ -20,14 +20,32 @@
 ## 📁 项目结构
 
 ```text
-PIO_TEST1/
-├── src/                    # 源代码目录
-│   ├── main.c             # 主程序文件
-│   └── main.h             # 主头文件
-├── include/               # 公共头文件目录
-├── lib/                   # 第三方库目录
-├── .vscode/              # VSCode 配置
-└── platformio.ini        # PlatformIO 配置文件
+PIO_HAL_PROJECT_TEMPLATE/
+├── src/                          # 源代码目录
+│   ├── main.c                    # 主程序（HAL 库初始化 + 用户代码）
+│   ├── stm32f1xx_hal_msp.c       # HAL 库 MSP 初始化文件
+│   ├── stm32f1xx_it.c            # 中断服务函数
+│   └── system_stm32f1xx.c        # 系统时钟配置文件
+├── include/                      # 公共头文件目录
+│   ├── main.h                    # 主头文件（引脚定义 + 函数声明）
+│   ├── stm32f1xx_hal_conf.h      # HAL 库配置文件
+│   └── stm32f1xx_it.h            # 中断头文件
+├── lib/                          # 第三方库目录
+├── .vscode/                      # VSCode 配置
+├── .lingma/                      # AI 助手配置（内部使用，勿修改）
+├── docs/                         # 项目文档目录
+│   ├── README.md                 # 文档总索引
+│   ├── CUBEMX_GUIDE.md           # CubeMX 同步指南
+│   ├── DAPLINK_GUIDE.md          # DAP-Link 使用指南
+│   ├── QUICK_REFERENCE.md        # 快速参考手册
+│   ├── TROUBLESHOOTING.md        # 故障排除指南
+│   └── git-commit/               # Git 提交规范目录
+│       ├── spec.md               # Git 提交详细规范
+│       ├── guide.md              # Git 提交使用指南
+│       └── quick-reference.md    # Git 提交速查卡
+├── platformio.ini                # PlatformIO 配置文件
+├── sync_cubemx_simple.ps1        # CubeMX 代码同步脚本
+└── sync.bat                      # 同步脚本批处理包装
 ```
 
 ## ⚙️ 环境说明

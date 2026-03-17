@@ -78,6 +78,22 @@
 
 ---
 
+### 📝 Git 提交规范文档
+
+#### 7. [git-commit/](git-commit/) - Git 提交规范完整指南 ⭐⭐⭐⭐⭐
+
+**位置：** docs/git-commit/  
+**用途：** Git 提交信息规范化指导  
+**包含：**
+
+- [spec.md](git-commit/spec.md) - 详细规范（系统学习）
+- [guide.md](git-commit/guide.md) - 使用指南（实战演示）
+- [quick-reference.md](git-commit/quick-reference.md) - 速查卡（快速参考）
+
+**推荐：** 团队协作必读
+
+---
+
 ### 📂 历史文档（已合并）
 
 以下文档已合并到 `docs/CUBEMX_GUIDE.md`，**不再推荐使用**：
@@ -105,8 +121,9 @@
 
 ```text
 1. 使用 sync.bat 同步 → 参考 CUBEMX_GUIDE.md
-2. 编译验证 → 参考 README.md
-3. 遇到问题 → 查看 TROUBLESHOOTING.md
+2. 编写提交信息 → 参考 git-commit/guide.md
+3. 编译验证 → 参考 README.md
+4. 遇到问题 → 查看 TROUBLESHOOTING.md
 ```
 
 ### 版本升级
@@ -125,7 +142,11 @@
 PIO_TEST2/
 ├── README.md                    # 主入口，项目概述
 ├── docs/                        # 文档目录
-│   └── CUBEMX_GUIDE.md         # CubeMX 集成完整指南
+│   ├── CUBEMX_GUIDE.md         # CubeMX 集成完整指南
+│   └── git-commit/             # Git 提交规范目录
+│       ├── spec.md             # 详细规范
+│       ├── guide.md            # 使用指南
+│       └── quick-reference.md  # 速查卡
 ├── CHANGELOG.md                 # 更新日志
 ├── TROUBLESHOOTING.md           # 故障排除
 ├── DAPLINK_GUIDE.md             # DAP-Link 指南
@@ -141,6 +162,7 @@ PIO_TEST2/
 
 - **了解项目** → [README.md](../README.md)
 - **学习 CubeMX 集成** → [docs/CUBEMX_GUIDE.md](CUBEMX_GUIDE.md)
+- **学习 Git 提交规范** → [docs/git-commit/guide.md](git-commit/guide.md)
 - **快速查询命令** → [QUICK_REFERENCE.md](../QUICK_REFERENCE.md)
 - **解决编译问题** → [TROUBLESHOOTING.md](../TROUBLESHOOTING.md)
 - **使用 DAP-Link** → [DAPLINK_GUIDE.md](../DAPLINK_GUIDE.md)
@@ -176,6 +198,8 @@ PIO_TEST2/
 README.md
     ↓
 docs/CUBEMX_GUIDE.md
+    ↓
+docs/git-commit/guide.md
     ↓
 QUICK_REFERENCE.md
     ↓
